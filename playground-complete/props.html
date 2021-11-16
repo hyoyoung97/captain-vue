@@ -8,13 +8,16 @@
 </head>
 <body>
   <div id="app">
-    <!-- <app-header v-bind:프롭스 속성 이름="상위 컴포넌트의 데이터 이름"></app-header> -->
+    <!-- <app-header v-bind:프롭스 속성 이름="상위 컴포넌트의 !데이터 이름!"></app-header> -->
     <app-header v-bind:propsdata="message"></app-header>
     <app-content v-bind:propsdata="num"></app-content>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script>
+    //propsdata -> data를 나타냄 
+    //상위의 data 안에 내용을 바꾸면 하위 컴포넌트들 즉 <h1>{{ propsdata }}</h1> 의 내용이 바뀜 
+
     var appHeader = {
       template: '<h1>{{ propsdata }}</h1>',
       props: ['propsdata']
@@ -23,10 +26,12 @@
       template: '<div>{{ propsdata }}</div>',
       props: ['propsdata']
     }
-
+    //인스턴스 생성 
     new Vue({
-      el: '#app',
+      el: '#app',   //app 이라는 id를 가지 태그
       components: {
+        //components-> template, props=>var appHeader
+        //컴포넌트 이름: 컴포넌트 내용
         'app-header': appHeader,
         'app-content': appContent
       },
